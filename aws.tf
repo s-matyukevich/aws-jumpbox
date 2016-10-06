@@ -113,7 +113,7 @@ module "jumpbox_full" {
     source = "./jumpbox"
     
     instance_type = "${var.instance_type}"
-    ami = "${lookup(var.amis, concat(var.jumpbox_type, '_', var.aws_region))}"
+    ami = "${lookup(var.amis, concat(var.jumpbox_type, var.aws_region))}"
     aws_key_name = "${var.aws_key_name}"
     aws_key_path = "${var.aws_key_path}"
     security_group_id = "${aws_security_group.training_sg.id}"
@@ -129,7 +129,7 @@ module "jumpbox_default" {
     source = "./jumpbox"
     
     instance_type = "${var.instance_type}"
-    ami = "${lookup(var.amis, concat(var.jumpbox_type, '_', var.aws_region))}"
+    ami = "${lookup(var.amis, concat(var.jumpbox_type, var.aws_region))}"
     aws_key_name = "${var.aws_key_name}"
     aws_key_path = "${var.aws_key_path}"
     security_group_id = "${aws_security_group.training_sg.id}"
@@ -141,7 +141,7 @@ module "jumpbox_default" {
 }
 
 output "jumpbox_ip" {
-  value = "${coalesce(module.jumpbox_full.jumpbox_ip, module,jumpbox_default.jumbox_ip)}"
+  value = "${coalesce(module.jumpbox_full.jumpbox_ip, module.jumpbox_default.jumbox_ip)}"
 }
 
 output "jumpbox_user" {
