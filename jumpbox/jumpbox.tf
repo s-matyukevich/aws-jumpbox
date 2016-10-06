@@ -4,11 +4,64 @@ provider "aws" {
     region = "${var.aws_region}"
 }
 
+resource "aws_security_group" "training_sg" {
+    vpc_id = "${var.vpc_id}"
+    description = "Training security group"
+
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        from_port = 80 
+        to_port = 80
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        from_port = 443 
+        to_port = 443
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        from_port = 2222
+        to_port = 2222
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        from_port = 3306
+        to_port = 3006
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    tags {
+        Name = "training_sg_${var.name_tag}"
+        Owner = "${var.owner_tag}"
+        UUID = "${var.uuid}"
+    }
+}
+
 resource "aws_instance" "training_jumpbox" {
     ami = "${var.ami}"
     instance_type = "${var.instance_type}"
     key_name = "${var.aws_key_name}"
-    security_groups = ["${var.security_group_id}"]
+    security_groups = ["${aws_security_group.training_sg.id}"]
     subnet_id = "${var.subnet_id}"
     associate_public_ip_address = true
     source_dest_check = false

@@ -5,7 +5,7 @@ variable "aws_region" {}
 variable "ami" {}
 variable "aws_key_name" {}
 variable "aws_key_path" {}
-variable "security_group_id" {}
+variable "vpc_id" {}
 variable "subnet_id" {
     default = ""
 }
