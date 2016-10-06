@@ -1,9 +1,15 @@
+provider "aws" {
+    access_key = "${var.aws_access_key}"
+    secret_key = "${var.aws_secret_key}"
+    region = "${var.aws_region}"
+}
+
 resource "aws_instance" "training_jumpbox" {
     ami = "${var.ami}"
     instance_type = "${var.instance_type}"
     key_name = "${var.aws_key_name}"
-    security_groups = ["${var.securty_group_id}"]
-    subnet_id = "${var.subnet.id}"
+    security_groups = ["${var.security_group_id}"]
+    subnet_id = "${var.subnet_id}"
     associate_public_ip_address = true
     source_dest_check = false
 
@@ -15,7 +21,7 @@ resource "aws_instance" "training_jumpbox" {
 
     connection {
         user = "${var.jumpbox_user}"
-        private_key = "${file(var.aws_key_path})}"
+        private_key = "${file("${var.aws_key_path}")}"
     }
 
     provisioner "file" {
@@ -29,12 +35,10 @@ resource "aws_instance" "training_jumpbox" {
     }
 
     provisioner "remote-exec" {
-        inline = [
-                   "chmod +x /home/${var.jumpbox_user}/bin/common.sh",
+        inline = [ "chmod +x /home/${var.jumpbox_user}/bin/common.sh",
                    "chmod +x /home/${var.jumpbox_user}/bin/run.sh",
                    "sh /home/${var.jumpbox_user}/bin/common.sh",
-                   "sh /home/${var.jumpbox_user}/bin/run.sh"
-                 ]
+                   "sh /home/${var.jumpbox_user}/bin/run.sh"]
     }
 }
 
