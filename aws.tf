@@ -139,3 +139,15 @@ module "jumpbox_default" {
     jumpbox_user = "${var.jumpbox_user}"
     jumpbox_type = "${var.jumpbox_type}"
 }
+
+output "jumpbox_ip" {
+  value = "${coalesce(module.jumpbox_full.jumpbox_ip, module,jumpbox_default.jumbox_ip)}"
+}
+
+output "jumpbox_user" {
+  value = "${var.jumpbox_user}"
+}
+
+output "aws_key_path" {
+  value = "${var.aws_key_path}"
+}

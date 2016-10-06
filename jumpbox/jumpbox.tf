@@ -37,3 +37,7 @@ resource "aws_instance" "training_jumpbox" {
                  ]
     }
 }
+
+output "jumpbox_ip" {
+  value = "${aws_instance.training_jumpbox.public_ip}"
+}
