@@ -112,6 +112,9 @@ resource "aws_security_group" "training_sg" {
 module "jumpbox_full" {
     source = "./jumpbox"
     
+    aws_access_key = "${var.aws_access_key}"
+    aws_secret_key = "${var.aws_secret_key}"
+    aws_region = "${var.aws_region}"
     instance_type = "${var.instance_type}"
     ami = "${lookup(var.amis, concat(var.jumpbox_type, var.aws_region))}"
     aws_key_name = "${var.aws_key_name}"
@@ -128,6 +131,9 @@ module "jumpbox_full" {
 module "jumpbox_default" {
     source = "./jumpbox"
     
+    aws_access_key = "${var.aws_access_key}"
+    aws_secret_key = "${var.aws_secret_key}"
+    aws_region = "${var.aws_region}"
     instance_type = "${var.instance_type}"
     ami = "${lookup(var.amis, concat(var.jumpbox_type, var.aws_region))}"
     aws_key_name = "${var.aws_key_name}"
