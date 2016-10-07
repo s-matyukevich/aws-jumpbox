@@ -15,6 +15,7 @@ module "jumpbox" {
     ami = "${lookup(var.amis, format("%s_%s",var.jumpbox_type, var.aws_region))}"
     aws_key_name = "${var.aws_key_name}"
     aws_key_path = "${var.aws_key_path}"
+    subnet_id = ""
     name_tag = "${var.name_tag}"
     owner_tag = "${var.owner_tag}"
     uuid = "${var.uuid}"

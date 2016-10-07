@@ -61,7 +61,7 @@ resource "aws_instance" "training_jumpbox" {
     ami = "${var.ami}"
     instance_type = "${var.instance_type}"
     key_name = "${var.aws_key_name}"
-    security_groups = ["${aws_security_group.training_sg.id}"]
+    security_group_ids = ["${aws_security_group.training_sg.id}"]
     subnet_id = "${var.subnet_id}"
     associate_public_ip_address = true
     source_dest_check = false

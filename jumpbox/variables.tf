@@ -6,9 +6,7 @@ variable "ami" {}
 variable "aws_key_name" {}
 variable "aws_key_path" {}
 variable "vpc_id" {}
-variable "subnet_id" {
-    default = ""
-}
+variable "subnet_id" {}
 variable "name_tag" {}
 variable "owner_tag" {}
 variable "uuid" {}
