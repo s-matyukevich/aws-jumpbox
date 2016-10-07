@@ -79,19 +79,19 @@ resource "aws_instance" "training_jumpbox" {
 
     provisioner "file" {
         source = "${path.module}/scripts/common.sh"
-        destination = "/home/${var.jumpbox_user}/bin/common.sh"
+        destination = "/home/${var.jumpbox_user}/common.sh"
     }
 
     provisioner "file" {
         source = "${path.module}/scripts/${var.jumpbox_type}.sh"
-        destination = "/home/${var.jumpbox_user}/bin/run.sh"
+        destination = "/home/${var.jumpbox_user}/run.sh"
     }
 
     provisioner "remote-exec" {
         inline = [ "chmod +x /home/${var.jumpbox_user}/bin/common.sh",
                    "chmod +x /home/${var.jumpbox_user}/bin/run.sh",
-                   "sh /home/${var.jumpbox_user}/bin/common.sh",
-                   "sh /home/${var.jumpbox_user}/bin/run.sh"]
+                   "sh /home/${var.jumpbox_user}/common.sh",
+                   "sh /home/${var.jumpbox_user}/run.sh"]
     }
 }
 
