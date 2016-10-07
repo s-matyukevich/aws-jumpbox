@@ -12,7 +12,7 @@ module "jumpbox" {
     aws_region = "${var.aws_region}"
     vpc_id = "${var.default_vpc_id}"
     instance_type = "${var.instance_type}"
-    ami = "${lookup(var.amis, concat(var.jumpbox_type, var.aws_region))}"
+    ami = "${lookup(var.amis, format("%s_%s",var.jumpbox_type, var.aws_region))}"
     aws_key_name = "${var.aws_key_name}"
     aws_key_path = "${var.aws_key_path}"
     name_tag = "${var.name_tag}"
