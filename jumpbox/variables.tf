@@ -12,3 +12,6 @@ variable "owner_tag" {}
 variable "uuid" {}
 variable "jumpbox_user" {}
 variable "jumpbox_type" {}
+variable "cf_domain" {}
+variable "cf_admin" {}
+variable "cf_admin_password" {}

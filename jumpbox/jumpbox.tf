@@ -77,6 +77,10 @@ resource "aws_instance" "training_jumpbox" {
         private_key = "${file("${var.aws_key_path}")}"
     }
 
+    provisioner "local-exec" {
+        command = "${path.module}/scripts/${var.jumpbox_type}-local.sh"
+    }
+
     provisioner "file" {
         source = "${path.module}/scripts/common.sh"
         destination = "/home/${var.jumpbox_user}/common.sh"
@@ -91,7 +95,7 @@ resource "aws_instance" "training_jumpbox" {
         inline = [ "chmod +x /home/${var.jumpbox_user}/bin/common.sh",
                    "chmod +x /home/${var.jumpbox_user}/bin/run.sh",
                    "sh /home/${var.jumpbox_user}/common.sh",
-                   "sh /home/${var.jumpbox_user}/run.sh"]
+                   "sh /home/${var.jumpbox_user}/run.sh ${var.cf_domain} ${var.name_tag} ${var.uuid}"]
     }
 }
 
