@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 sudo bash -c 'cat > /usr/local/bin/check <<\EOF
 #!/bin/bash

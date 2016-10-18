@@ -1,8 +1,9 @@
 #!/bin/bash
+set -e
 
-cf_domain=$1
-uuid=$2
-owner_tag=$3
+cf_domain="$1"
+owner_tag="$2"
+uuid="$3"
 
 suffix=${uuid:0:4}
 

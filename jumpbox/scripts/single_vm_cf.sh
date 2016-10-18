@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 PUBLIC_IP=$(curl --silent http://169.254.169.254/latest/meta-data/public-ipv4)
 CF_DOMAIN=$(curl --silent http://169.254.169.254/latest/meta-data/public-ipv4).xip.io

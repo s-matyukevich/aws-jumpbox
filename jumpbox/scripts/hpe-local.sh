@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 cf_domain=$TF_VAR_cf_domain
 cf_admin=$TF_VAR_cf_admin
@@ -11,8 +12,9 @@ org="org-${suffix}"
 space="space-${suffix}"
 user="${owner_tag}-${suffix}"
 
-cf api api.${cf_domain}
-cf auth ${cf_admin} ${cf_password}
+export CF_HOME=.
+cf api api.${cf_domain} --skip-ssl-validation
+cf auth ${cf_admin} ${cf_admin_password}
 cf create-org ${org}
 cf create-space ${space} -o ${org}
 cf create-user ${user} ${uuid}
