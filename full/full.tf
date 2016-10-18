@@ -74,6 +74,9 @@ module "jumpbox" {
     uuid = "${var.uuid}"
     jumpbox_user = "${var.jumpbox_user}"
     jumpbox_type = "${var.jumpbox_type}"
+    cf_domain = "${var.cf_domain}"
+    cf_admin = "${var.cf_admin}"
+    cf_admin_password = "${var.cf_admin_password}"
 }
 
 
