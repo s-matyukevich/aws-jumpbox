@@ -92,10 +92,10 @@ resource "aws_instance" "training_jumpbox" {
     }
 
     provisioner "remote-exec" {
-        inline = [ "chmod +x /home/${var.jumpbox_user}/bin/common.sh",
-                   "chmod +x /home/${var.jumpbox_user}/bin/run.sh",
+        inline = [ "chmod +x /home/${var.jumpbox_user}/common.sh",
+                   "chmod +x /home/${var.jumpbox_user}/run.sh",
                    "sh /home/${var.jumpbox_user}/common.sh",
-                   "sh /home/${var.jumpbox_user}/run.sh ${var.cf_domain} ${var.name_tag} ${var.uuid}"]
+                   "sh -c '/home/${var.jumpbox_user}/run.sh ${var.cf_domain} ${var.owner_tag} ${var.uuid}'"]
     }
 }
 
