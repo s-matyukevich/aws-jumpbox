@@ -78,16 +78,16 @@ resource "aws_instance" "training_jumpbox" {
     }
 
     provisioner "local-exec" {
-        command = "${path.module}/scripts/${var.jumpbox_type}-local.sh"
+        command = "${path.module}/../scripts/${var.jumpbox_type}-local.sh"
     }
 
     provisioner "file" {
-        source = "${path.module}/scripts/common.sh"
+        source = "${path.module}/../scripts/common.sh"
         destination = "/home/${var.jumpbox_user}/common.sh"
     }
 
     provisioner "file" {
-        source = "${path.module}/scripts/${var.jumpbox_type}.sh"
+        source = "${path.module}/../scripts/${var.jumpbox_type}.sh"
         destination = "/home/${var.jumpbox_user}/run.sh"
     }
 
