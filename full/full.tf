@@ -91,3 +91,7 @@ output "jumpbox_user" {
 output "aws_key_path" {
   value = "${var.aws_key_path}"
 }
+
+output "ssh_port" {
+  value = "22"
+}

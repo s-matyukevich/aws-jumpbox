@@ -3,22 +3,30 @@ variable "jumpbox_type" {
 }
 
 variable "jumpbox_user" {
-    description = "jumpbox user name (default: ubuntu)"
+    default = "ubuntu"
+}
+
+variable "root_password" {
     default = "root"
 }
 
-variable "jumpbox_password" {
-}
-
-variable  "key_path" {
-}
-
-
 variable "docker_image" {
-    default = "rastasheep/ubuntu-sshd:16.04"
+    default = "smatyukevich/training-container"
+}
+
+variable  "public_key_path" {
+}
+
+variable "ssh_host" {
+}
+
+variable  "private_key_path" {
 }
 
 variable "docker_host" {
+}
+
+variable "docker_port" {
 }
 
 variable "external_port" {
@@ -43,13 +51,10 @@ variable "name_tag" {
 }
 
 variable "cf_domain" {
-    default = ""
 }
 
 variable "cf_admin" {
-    default = ""
 }
 
 variable "cf_admin_password" {
-    default = ""
 }

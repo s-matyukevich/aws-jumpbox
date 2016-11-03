@@ -3,6 +3,7 @@ set -e
 
 sudo bash -c 'cat > /usr/local/bin/check <<\EOF
 #!/bin/bash
+set -e
 cmd=$1
 eval cmd_res=\`${cmd}\`
 regex=$2
