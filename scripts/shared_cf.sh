@@ -16,4 +16,5 @@ echo "CF_PASSWORD=${uuid}" >> .ssh/environment
 
 sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin no/' /etc/ssh/sshd_config
 echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config
+sudo sed -i 's/AcceptEnv */AcceptEnv \*/g' /etc/ssh/sshd_config
 service ssh restart
