@@ -58,7 +58,7 @@ resource "aws_security_group" "training_sg" {
 }
 
 resource "aws_instance" "training_jumpbox" {
-    ami = "${var.ami}"
+    ami = "${lookup(var.amis, format("%s_%s",var.jumpbox_type, var.aws_region))}"
     instance_type = "${var.instance_type}"
     key_name = "${var.aws_key_name}"
     vpc_security_group_ids = ["${aws_security_group.training_sg.id}"]
